@@ -18,7 +18,6 @@ describe('Create article', () => {
       body: faker.lorem.paragraphs(2)
     };
 
-    cy.createArticle(article.title, article.description, article.body);
     cy.contains('nav-link', 'New Article').click();
 
     cy.get('[placeholder="Article Title"]').type(article.title);
@@ -32,7 +31,7 @@ describe('Create article', () => {
 
     cy.get('.btn').click();
 
-    cy.contains(article.title);
+    cy.contains(article.title).should('exist');
   });
 
   it('should allow to delete articles', () => {
@@ -44,10 +43,10 @@ describe('Create article', () => {
 
     cy.createArticle(article.title, article.description, article.body);
 
-    cy.contains(article.title).click();
+    cy.contains(article.title).should('exist');
 
     cy.contains('button', 'Delete Article').click();
 
-    cy.contains('No articles are here... yet.');
+    cy.contains('No articles are here... yet.').should('exist');
   });
 });
