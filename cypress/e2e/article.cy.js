@@ -41,8 +41,6 @@ describe('Create article', () => {
       body: faker.lorem.paragraphs(2)
     };
 
-    cy.createArticle(article.title, article.description, article.body);
-
     cy.contains(article.title).should('exist');
 
     cy.contains('button', 'Delete Article').click();
